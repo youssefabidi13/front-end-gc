@@ -1,6 +1,7 @@
 import { AdminService } from './../../services/admin.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import { data } from 'jquery';
 import { AuthService } from 'src/app/services/auth.service';
 Chart.register(...registerables);
 
@@ -11,7 +12,11 @@ Chart.register(...registerables);
 })
 export class HomeAdminTestComponent implements OnInit {
 
+
   constructor(private adminService:AdminService,private authService:AuthService) { }
+
+  feedbackRates: number[] = [];
+
   id:number=0;
   labeldataskill:string[] = [];
   realdataskill:number[] = [];
@@ -22,6 +27,7 @@ export class HomeAdminTestComponent implements OnInit {
   n_skills:number=0;
   n_courses:number=0;
   ngOnInit(): void {
+    this.getFeedbacks();
     this.getUserIdByEmail();
     this.getNumberOfUsers();
     this.getNumberOfDepartments();
@@ -66,6 +72,88 @@ export class HomeAdminTestComponent implements OnInit {
       this.n_courses=data;
     })
   }
+  // getFeedbacks() {
+  //   this.adminService.getAllFeedbacks().subscribe(data => {
+  //     const totalFeedbacks = data.length;
+  //     const ratesCount: { [key: number]: number } = {};
+
+  //     // Count the occurrence of each rate
+  //     data.forEach((feedback: { rate: number }) => {
+  //       const rate = feedback.rate;
+  //       ratesCount[rate] = (ratesCount[rate] || 0) + 1;
+  //     });
+
+  //     // Calculate percentage for each rate
+  //     this.feedbackRates = Object.keys(ratesCount).map(rate => {
+  //       const count = ratesCount[parseInt(rate)];
+  //       return { rate: +rate, percentage: (count / totalFeedbacks) * 100 };
+  //     }).map(rate => rate.percentage);
+
+  //     // Update your charts with this.feedbackRates
+  //     this.RenderPieChart();
+  //   });
+  // }
+
+ 
+  // getFeedbacks() {
+
+  // }
+
+  getFeedbacks() {
+    this.adminService.getAllFeedbacksRating().subscribe(data => {
+      const totalFeedbacks = data.length;
+      const ratesCount: { [key: number]: number } = {};
+  
+      // Count the occurrence of each rate
+      data.forEach((rate: number) => {
+        ratesCount[rate] = (ratesCount[rate] || 0) + 1;
+      });
+  
+      // Calculate percentage for each rate
+      this.feedbackRates = Object.keys(ratesCount).map(rate => {
+        const count = ratesCount[parseInt(rate)];
+        return { rate: +rate, percentage: (count / totalFeedbacks) * 100 };
+      })
+      .map(rate => rate.percentage);
+  
+      // Update your charts with this.feedbackRates
+      this.RenderPieChart();
+    });
+  }
+  RenderPieChart() {
+    // Format the feedbackRates as strings with percentage
+    const labels = this.feedbackRates.map((rate, index) => `${this.feedbackRates[index]}: ${rate.toFixed(2)}%`);
+    console.log(labels);
+    new Chart("myPieChart", {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: this.feedbackRates,
+        }],
+        labels: labels,
+      },
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+          tooltip: {
+            callbacks: {
+              label: (context) => {
+                const label = context.label || '';
+                if (label) {
+                  return `${label}: ${context.parsed}%`;
+                }
+                return '';
+              },
+            },
+          },
+        },
+      },
+    });
+  }
+  
+  
 
   RenderChart() {
     new Chart("myChart", {
@@ -118,4 +206,51 @@ export class HomeAdminTestComponent implements OnInit {
       console.log(data);
     })
   }
+
+  // RenderPieChart() {
+  //   // Format the feedbackRates as strings with percentage
+  //   const labels = this.feedbackRates.map((rate, index) => `Rate ${index + 1}: ${rate.toFixed(2)}%`);
+  
+  //   new Chart("myPieChart", {
+  //     type: 'doughnut',
+  //     data: {
+  //       datasets: [{
+  //         data: this.feedbackRates,
+  //       }],
+  //       labels: labels,
+  //     },
+  //     options: {
+  //       plugins: {
+  //         legend: {
+  //           position: 'bottom',
+  //         },
+  //         tooltip: {
+  //           callbacks: {
+  //             label: (context) => {
+  //               const label = context.label || '';
+  //               if (label) {
+  //                 return `${label}: ${context.parsed}%`;
+  //               }
+  //               return '';
+  //             },
+  //           },
+  //         },
+  //       },
+  //     },
+  //   });
+  // }
+
+  // RenderPieChart() {
+  // }
+  
+
+  
+  
+  
+ 
+  
+  
+ 
+  
+
 }

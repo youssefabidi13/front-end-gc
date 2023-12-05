@@ -20,6 +20,8 @@ import { FilesByDepartementComponent } from './components/files-by-departement/f
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { CsvComponent } from './components/csv/csv.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -78,6 +80,7 @@ export const routing = RouterModule.forRoot(routes);
     UploadFileComponent,
     FeedbackComponent,
     CsvComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,7 +90,8 @@ export const routing = RouterModule.forRoot(routes);
     ReactiveFormsModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
+{ provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
+{ provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

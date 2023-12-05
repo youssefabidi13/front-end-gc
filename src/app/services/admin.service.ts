@@ -34,6 +34,13 @@ export class AdminService {
     return this.http.get<CompetenceUserCount[]>(this.baseUrl+"usersByCompetence");
   }
 
+  getAllFeedbacks():Observable<any>{
+    return this.http.get<any>(this.baseUrl+"all-rating");
+  }
+
+  getAllFeedbacksRating():Observable<any>{
+    return this.http.get<any>(this.baseUrl+"all-rating-numbers");
+  }
 }
 export interface DepartmentEmployeeCount {
   department: string;
