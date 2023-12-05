@@ -1,0 +1,28 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card mt-5" style="margin-left: auto; margin-right: auto; width: 50%;">
+      <div class="row">
+        <form [formGroup]="formFeedback" (ngSubmit)="handleHumor()" class="col-10">
+          <div class="comment-box ml-2 text-center"> <!-- Center the content within comment-box -->
+            <h1>Add a Feedback</h1>
+            <div class="rating" style="margin-left: auto; margin-right: auto; width: 50%;"> <!-- Center the rating div -->
+              <input type="radio" formControlName="rating" value="5" id="5"><label for="5">☆</label>
+              <input type="radio" formControlName="rating" value="4" id="4"><label for="4">☆</label>
+              <input type="radio" formControlName="rating" value="3" id="3"><label for="3">☆</label>
+              <input type="radio" formControlName="rating" value="2" id="2"><label for="2">☆</label>
+              <input type="radio" formControlName="rating" value="1" id="1"><label for="1">☆</label>
+            </div>
+            <br><br><br>
+            <div class="comment-area">
+              <textarea class="form-control" formControlName="messageFeedback" placeholder="What is your Feedback" rows="9" cols="50"></textarea>
+            </div>
+            <br><br>
+            <div class="comment-btns mt-2"> <!-- Center the buttons -->
+              <button class="btn btn-success btn-sm mr-2" style="margin-right: 90px;">Cancel</button> 
+              <button class="btn btn-success send btn-sm" type="submit">Send <i class="fa fa-long-arrow-right ml-1"></i></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
