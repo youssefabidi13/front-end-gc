@@ -1,0 +1,111 @@
+<!-- <div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="p-3">
+        <div class="card">
+          <div class="card-header">Registration</div>
+          <div class="card-body">
+            <form [formGroup]="formRegister" (ngSubmit)="handleRegistration()">
+              <div class="mb-3">
+                <label class="form-label">Full name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="nomComplet"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  formControlName="email"
+                />
+                <div
+                  *ngIf="formRegister.get('email')?.hasError('uniqueEmail')"
+                  class="text-danger"
+                >
+                  Email is already taken. Please choose a different one.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Department</label>
+                <select class="form-select" formControlName="departementId">
+                  <option
+                    *ngFor="let department of departments"
+                    [value]="department.idDepartement"
+                  >
+                    {{ department.nomDepartement }}
+                  </option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  formControlName="password"
+                />
+              </div>
+              <button class="btn btn-primary">Register</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<section class="bg-login d-flex align-items-center">
+  <div class="container">
+      <div class="row justify-content-center mt-4">
+          <div class="col-lg-4">
+              <div class="bg-white p-4 mt-5 rounded">
+                  <div class="text-center">
+                      <h4 class="fw-bold mb-3">Sign up</h4>
+                  </div>
+                  <form class="login-form" [formGroup]="formRegister" (ngSubmit)="handleRegistration()">
+                      <div class="row">
+                          <div class="col-lg-12 mt-2">
+                              <input type="text" formControlName="nomComplet" class="form-control" placeholder="Full name" >
+                          </div>
+                          <div class="col-lg-12 mt-2">
+                              <input type="email" class="form-control"  formControlName="email" placeholder="Email" required="">
+                              <div
+                              *ngIf="formRegister.get('email')?.hasError('uniqueEmail')"
+                              class="text-danger"
+                            >
+                              Email is already taken. Please choose a different one.
+                            </div>
+                          </div>
+                          <div class="col-lg-12 mt-2">
+                            <select  class="form-control"  formControlName="departementId">
+                              <option value="" disabled selected>Select a Department</option>
+
+                              <option 
+                                *ngFor="let department of departments"
+                                [value]="department.idDepartement"
+                              >
+                                {{ department.nomDepartement }}
+                              </option>
+                            </select>
+                          </div>
+                          <div class="col-lg-12 mt-2">
+                              <input type="password" class="form-control"                   formControlName="password"
+                              placeholder="Password" >
+                          </div>
+                          
+                          <div class="col-lg-12 mt-4">
+                              <button class="btn btn-primary w-100">Register</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+              <div class="text-center mt-3">
+                  <p><small class="text-white me-2">Already have an account ?</small> <a routerLink="/login" class="text-white fw-bold">Sign in</a></p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>

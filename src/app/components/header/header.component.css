@@ -1,0 +1,4 @@
+/* Add a style for the active link */
+.navbar-nav .nav-item.active .nav-link {
+  font-weight: bold;
+}
