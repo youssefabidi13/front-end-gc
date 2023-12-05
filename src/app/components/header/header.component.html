@@ -10,29 +10,21 @@
       <div class="collapse navbar-collapse " id="main-navbar">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item">
-            <a class="nav-link" *ngIf="authService.isAuthenticated" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+            <a class="nav-link" *ngIf="authService.isAuthenticated && authService.roles.includes('ADMIN')" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" *ngIf="authService.isAuthenticated" routerLink="#" routerLinkActive="active">{{authService.username}}</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" *ngIf="authService.isAuthenticated" routerLink="/all-files" routerLinkActive="active">All files</a>
-          </li>
-  
-          <li class="nav-item">
-            <a class="nav-link" *ngIf="authService.isAuthenticated" routerLink="/formation/GI" routerLinkActive="active">FILE</a>
-          </li>
-  
+            <a class="nav-link" *ngIf="authService.isAuthenticated && authService.roles.includes('USER')" routerLink="/all-files" routerLinkActive="active">All files</a>
+          </li>  
           <!-- Account -->
           <li class="nav-item">
-            <a class="nav-link" *ngIf="authService.isAuthenticated" routerLink="#" routerLinkActive="active">Upload CSV</a>
+            <a class="nav-link"*ngIf="authService.isAuthenticated && authService.roles.includes('ADMIN')" routerLink="/upload-csv" routerLinkActive="active">Upload CSV</a>
           </li>
         </ul>
       </div>
   
         <div class="navbar-buttons">
             <div class="navbar-buttons">
-            <a class="btn btn-main" *ngIf="!authService.isAuthenticated" routerLink="/login">Login</a>
+            <a class="btn btn-main" *ngIf="!authService.isAuthenticated " routerLink="/login">Login</a>
             </div>
         </div>
         <div class="navbar-buttons">

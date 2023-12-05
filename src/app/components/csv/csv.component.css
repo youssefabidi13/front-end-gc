@@ -1,0 +1,42 @@
+/* file-upload.component.css */
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+  }
+  
+  .file-input {
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+  
+  .custom-file-label {
+    display: inline-block;
+    padding: 10px 15px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+  }
+  
+  input[type="file"] {
+    font-size: 100px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Add some styles for better visual appearance (optional) */
+  h1 {
+    color: #333;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ecf0f1;
+  }
+  

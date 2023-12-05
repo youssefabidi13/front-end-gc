@@ -19,6 +19,7 @@ import { AllFilesComponent } from './components/all-files/all-files.component';
 import { FilesByDepartementComponent } from './components/files-by-departement/files-by-departement.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
+import { CsvComponent } from './components/csv/csv.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -34,11 +35,31 @@ const routes: Routes = [
     component: HomeAdminTestComponent,
     canActivate: [AuthenticationGuard, AuthorisationGuard],
   },
-  { path: 'file', component: UploadFileComponent  ,canActivate: [AuthenticationGuard, AuthorisationUserGuard]},
-  { path: 'formation/:department', component: FilesByDepartementComponent , canActivate: [AuthenticationGuard, AuthorisationUserGuard], },
-  { path: "all-files", component: AllFilesComponent ,canActivate: [AuthenticationGuard, AuthorisationUserGuard]},
-  {path:"add-feedback/:fileId" , component:FeedbackComponent ,canActivate: [AuthenticationGuard, AuthorisationUserGuard]},
-
+  {
+    path: 'file',
+    component: UploadFileComponent,
+    canActivate: [AuthenticationGuard, AuthorisationUserGuard],
+  },
+  {
+    path: 'formation/:department',
+    component: FilesByDepartementComponent,
+    canActivate: [AuthenticationGuard, AuthorisationUserGuard],
+  },
+  {
+    path: 'all-files',
+    component: AllFilesComponent,
+    canActivate: [AuthenticationGuard, AuthorisationUserGuard],
+  },
+  {
+    path: 'add-feedback/:fileId',
+    component: FeedbackComponent,
+    canActivate: [AuthenticationGuard, AuthorisationUserGuard],
+  },
+  {
+    path: 'upload-csv',
+    component: CsvComponent,
+    canActivate: [AuthenticationGuard, AuthorisationGuard],
+  },
 ];
 
 export const routing = RouterModule.forRoot(routes);
@@ -56,6 +77,7 @@ export const routing = RouterModule.forRoot(routes);
     FilesByDepartementComponent,
     UploadFileComponent,
     FeedbackComponent,
+    CsvComponent,
   ],
   imports: [
     BrowserModule,
