@@ -1,0 +1,35 @@
+<div class="container">
+    <h1>Mes Formations</h1>
+
+    <button routerLink="/file" class="upload-button">Ajouter une Formation</button>
+
+    <div class="table-container">
+        <table class="table table-striped table-bordered table-sm" id="datatableexample">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Type</th>
+                    <th>Departement</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let file of files">
+                    <td>
+                        <h5>{{ file.filename }}</h5>
+                    </td>
+                    <td>
+                        <h5>{{ file.contentType }}</h5>
+                    </td>
+                    <td>
+                        <!-- <h5>{{ file.department }}</h5> -->
+                        <a [routerLink]="'/formation/' + file.department">{{ file.department }}</a>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" (click)="downloadFile(file.id)">Download</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

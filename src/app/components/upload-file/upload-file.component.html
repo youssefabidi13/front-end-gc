@@ -1,0 +1,19 @@
+<!-- app.component.html -->
+<div class="file-upload-container">
+    <label for="fileInput" class="file-label">
+      <span class="icon">&#x1F4E1;</span> <!-- Cloud Upload Emoji -->
+      <span class="file-description">{{ selectedFile ? selectedFile.name : 'Choose a file or drag it here' }}</span>
+    </label>
+    <input type="file" id="fileInput" (change)="onFileSelected($event)">
+    <!-- Add a dropdown for selecting the department -->
+    <label for="departmentInput">Select Department:</label>
+    <select id="departmentInput" [(ngModel)]="selectedDepartment">
+      <option *ngFor="let d of departements" [value]="d">{{d}}</option>
+  
+      <!-- Add more departments as needed -->
+    </select>
+  
+  
+    <button class="upload-button" (click)="uploadFile()">Upload</button>
+  </div>
+  

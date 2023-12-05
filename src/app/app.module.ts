@@ -6,7 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RouterModule, Routes } from '@angular/router';
-import {  HTTP_INTERCEPTORS, HttpClientModule } from  '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppInterceptor } from './interceptors/app.interceptor';
 import { HomeTestComponent } from './components/home-test/home-test.component';
@@ -15,18 +15,29 @@ import { HomeAdminTestComponent } from './components/home-admin-test/home-admin-
 import { AuthorisationGuard } from './guards/authorisation.guard';
 import { AuthorisationUserGuard } from './guards/authorisation-user.guard';
 import { FooterComponent } from './components/footer/footer.component';
-
-
-
+import { AllFilesComponent } from './components/all-files/all-files.component';
+import { FilesByDepartementComponent } from './components/files-by-departement/files-by-departement.component';
+import { UploadFileComponent } from './components/upload-file/upload-file.component';
 
 const routes: Routes = [
-  { path:"", redirectTo:"/login", pathMatch:"full"},
-  { path:"login", component:LoginComponent},
-  { path:"register",component:RegisterComponent},
-  { path:"home",component:HomeTestComponent,canActivate:[AuthenticationGuard,AuthorisationUserGuard]},
-  {path:"dashboard" ,component:HomeAdminTestComponent,canActivate:[AuthenticationGuard,AuthorisationGuard]},
-];
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  {
+    path: 'home',
+    component: HomeTestComponent,
+    canActivate: [AuthenticationGuard, AuthorisationUserGuard],
+  },
+  {
+    path: 'dashboard',
+    component: HomeAdminTestComponent,
+    canActivate: [AuthenticationGuard, AuthorisationGuard],
+  },
+  { path: 'file', component: UploadFileComponent  ,canActivate: [AuthenticationGuard, AuthorisationUserGuard]},
+  { path: 'formation/:department', component: FilesByDepartementComponent , canActivate: [AuthenticationGuard, AuthorisationUserGuard], },
+  { path: "all-files", component: AllFilesComponent ,canActivate: [AuthenticationGuard, AuthorisationUserGuard]},
 
+];
 
 export const routing = RouterModule.forRoot(routes);
 
@@ -38,21 +49,21 @@ export const routing = RouterModule.forRoot(routes);
     HomeTestComponent,
     RegisterComponent,
     HomeAdminTestComponent,
-    FooterComponent
+    FooterComponent,
+    AllFilesComponent,
+    FilesByDepartementComponent,
+    UploadFileComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule ,
-    
-
+    ReactiveFormsModule,
   ],
   providers: [
-    {provide : HTTP_INTERCEPTORS, useClass : AppInterceptor, multi : true}
-
+    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
