@@ -8,24 +8,26 @@ Chart.register(...registerables);
 @Component({
   selector: 'app-home-admin-test',
   templateUrl: './home-admin-test.component.html',
-  styleUrls: ['./home-admin-test.component.css']
+  styleUrls: ['./home-admin-test.component.css'],
 })
 export class HomeAdminTestComponent implements OnInit {
-
-
-  constructor(private adminService:AdminService,private authService:AuthService) { }
+  constructor(
+    private adminService: AdminService,
+    private authService: AuthService
+  ) {}
 
   feedbackRates: number[] = [];
+  feedbackRatesPercentage: any[] = [];
 
-  id:number=0;
-  labeldataskill:string[] = [];
-  realdataskill:number[] = [];
+  id: number = 0;
+  labeldataskill: string[] = [];
+  realdataskill: number[] = [];
   labeldata: any[] = [];
   realdata: any[] = [];
-  n:number=0;
-  n_departments:number=0;
-  n_skills:number=0;
-  n_courses:number=0;
+  n: number = 0;
+  n_departments: number = 0;
+  n_skills: number = 0;
+  n_courses: number = 0;
   ngOnInit(): void {
     this.getFeedbacks();
     this.getUserIdByEmail();
@@ -33,136 +35,68 @@ export class HomeAdminTestComponent implements OnInit {
     this.getNumberOfDepartments();
     this.getNumberOfSkills();
     this.getNumberOfCourses();
-     // Fetch data from your backend
-     this.adminService.getNumberOfEmployeesByDepartment().subscribe(data => {
-      this.labeldata = data.map(entry => entry.department);
-      this.realdata = data.map(entry => entry.employeeCount);
+    // Fetch data from your backend
+    this.adminService.getNumberOfEmployeesByDepartment().subscribe((data) => {
+      this.labeldata = data.map((entry) => entry.department);
+      this.realdata = data.map((entry) => entry.employeeCount);
 
       this.RenderChart();
     });
-    this.adminService.getUsersByCompetence().subscribe(data => {
-      this.labeldataskill = data.map(entry => entry.competenceName);
-      this.realdataskill = data.map(entry => entry.userCount);
+    this.adminService.getUsersByCompetence().subscribe((data) => {
+      this.labeldataskill = data.map((entry) => entry.competenceName);
+      this.realdataskill = data.map((entry) => entry.userCount);
 
       this.RenderSkillsChart();
     });
   }
 
-  getNumberOfUsers(){
-    this.adminService.getNumberOfUsers().subscribe(data=>{
+  getNumberOfUsers() {
+    this.adminService.getNumberOfUsers().subscribe((data) => {
       console.log(data);
-      this.n=data;
-    })
+      this.n = data;
+    });
   }
-  getNumberOfDepartments(){
-    this.adminService.getNumberOfDepartments().subscribe(data=>{
+  getNumberOfDepartments() {
+    this.adminService.getNumberOfDepartments().subscribe((data) => {
       console.log(data);
-      this.n_departments=data;
-    })
+      this.n_departments = data;
+    });
   }
-  getNumberOfSkills(){
-    this.adminService.getNumberOfSkills().subscribe(data=>{
+  getNumberOfSkills() {
+    this.adminService.getNumberOfSkills().subscribe((data) => {
       console.log(data);
-      this.n_skills=data;
-    })
+      this.n_skills = data;
+    });
   }
-  getNumberOfCourses(){
-    this.adminService.getNumberOfCourses().subscribe(data=>{
+  getNumberOfCourses() {
+    this.adminService.getNumberOfCourses().subscribe((data) => {
       console.log(data);
-      this.n_courses=data;
-    })
+      this.n_courses = data;
+    });
   }
-  // getFeedbacks() {
-  //   this.adminService.getAllFeedbacks().subscribe(data => {
-  //     const totalFeedbacks = data.length;
-  //     const ratesCount: { [key: number]: number } = {};
-
-  //     // Count the occurrence of each rate
-  //     data.forEach((feedback: { rate: number }) => {
-  //       const rate = feedback.rate;
-  //       ratesCount[rate] = (ratesCount[rate] || 0) + 1;
-  //     });
-
-  //     // Calculate percentage for each rate
-  //     this.feedbackRates = Object.keys(ratesCount).map(rate => {
-  //       const count = ratesCount[parseInt(rate)];
-  //       return { rate: +rate, percentage: (count / totalFeedbacks) * 100 };
-  //     }).map(rate => rate.percentage);
-
-  //     // Update your charts with this.feedbackRates
-  //     this.RenderPieChart();
-  //   });
-  // }
-
- 
-  // getFeedbacks() {
-
-  // }
 
   getFeedbacks() {
-    this.adminService.getAllFeedbacksRating().subscribe(data => {
-      const totalFeedbacks = data.length;
-      const ratesCount: { [key: number]: number } = {};
-  
-      // Count the occurrence of each rate
-      data.forEach((rate: number) => {
-        ratesCount[rate] = (ratesCount[rate] || 0) + 1;
+    this.adminService
+      .getAllFeedbacksRating()
+      .subscribe((data: Record<string, unknown>) => {
+        this.feedbackRatesPercentage = Object.entries(data).map(
+          ([key, value]) => ({
+            label: key,
+            data: parseFloat(value as string) + '%',
+          })
+        );
+        console.log(this.feedbackRatesPercentage);
+        this.RenderPieChart(); 
       });
-  
-      // Calculate percentage for each rate
-      this.feedbackRates = Object.keys(ratesCount).map(rate => {
-        const count = ratesCount[parseInt(rate)];
-        return { rate: +rate, percentage: (count / totalFeedbacks) * 100 };
-      })
-      .map(rate => rate.percentage);
-  
-      // Update your charts with this.feedbackRates
-      this.RenderPieChart();
-    });
   }
   RenderPieChart() {
-    // Format the feedbackRates as strings with percentage
-    const labels = this.feedbackRates.map((rate, index) => `${this.feedbackRates[index]}: ${rate.toFixed(2)}%`);
-    console.log(labels);
     new Chart("myPieChart", {
-      type: 'doughnut',
+      type: 'doughnut',  // Change the chart type to 'doughnut'
       data: {
+        labels: this.feedbackRatesPercentage.map(entry => entry.label),
         datasets: [{
-          data: this.feedbackRates,
-        }],
-        labels: labels,
-      },
-      options: {
-        plugins: {
-          legend: {
-            position: 'bottom',
-          },
-          tooltip: {
-            callbacks: {
-              label: (context) => {
-                const label = context.label || '';
-                if (label) {
-                  return `${label}: ${context.parsed}%`;
-                }
-                return '';
-              },
-            },
-          },
-        },
-      },
-    });
-  }
-  
-  
-
-  RenderChart() {
-    new Chart("myChart", {
-      type: 'bar',
-      data: {
-        labels: this.labeldata,
-        datasets: [{
-          label: 'Number of employee by department',
-          data: this.realdata,
+          label: 'Percentage of Students',
+          data: this.feedbackRatesPercentage.map(entry => parseFloat(entry.data)),
           borderWidth: 1
         }]
       },
@@ -175,82 +109,64 @@ export class HomeAdminTestComponent implements OnInit {
         }
       }
     });
-    
   }
-  RenderSkillsChart() {
-    new Chart("SkillChart", {
-      type: 'line',
+  
+  
+
+  RenderChart() {
+    new Chart('myChart', {
+      type: 'bar',
       data: {
-        labels: this.labeldataskill, // Use departments as labels for the x-axis
-        datasets: [{
-          label: 'Number of employee by skill',
-          data: this.realdataskill,
-          fill: false,
-          borderColor: 'rgb(75, 192, 192)',
-          borderWidth: 2
-        }]
+        labels: this.labeldata,
+        datasets: [
+          {
+            label: 'Number of employee by department',
+            data: this.realdata,
+            borderWidth: 1,
+          },
+        ],
       },
       options: {
         scales: {
           y: {
             beginAtZero: true,
             display: true,
-          }
-        }
-      }
+          },
+        },
+      },
     });
   }
-  getUserIdByEmail(){
-    this.authService.getUserIdByEmail(this.authService.username).subscribe(data=>{
-      this.id=data;
-      console.log(data);
-    })
+  RenderSkillsChart() {
+    new Chart('SkillChart', {
+      type: 'line',
+      data: {
+        labels: this.labeldataskill, // Use departments as labels for the x-axis
+        datasets: [
+          {
+            label: 'Number of employee by skill',
+            data: this.realdataskill,
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            borderWidth: 2,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            display: true,
+          },
+        },
+      },
+    });
   }
-
-  // RenderPieChart() {
-  //   // Format the feedbackRates as strings with percentage
-  //   const labels = this.feedbackRates.map((rate, index) => `Rate ${index + 1}: ${rate.toFixed(2)}%`);
-  
-  //   new Chart("myPieChart", {
-  //     type: 'doughnut',
-  //     data: {
-  //       datasets: [{
-  //         data: this.feedbackRates,
-  //       }],
-  //       labels: labels,
-  //     },
-  //     options: {
-  //       plugins: {
-  //         legend: {
-  //           position: 'bottom',
-  //         },
-  //         tooltip: {
-  //           callbacks: {
-  //             label: (context) => {
-  //               const label = context.label || '';
-  //               if (label) {
-  //                 return `${label}: ${context.parsed}%`;
-  //               }
-  //               return '';
-  //             },
-  //           },
-  //         },
-  //       },
-  //     },
-  //   });
-  // }
-
-  // RenderPieChart() {
-  // }
-  
-
-  
-  
-  
- 
-  
-  
- 
-  
-
+  getUserIdByEmail() {
+    this.authService
+      .getUserIdByEmail(this.authService.username)
+      .subscribe((data) => {
+        this.id = data;
+        console.log(data);
+      });
+  }
 }
