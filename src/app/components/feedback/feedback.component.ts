@@ -69,4 +69,14 @@ export class FeedbackComponent implements OnInit {
       console.log(data);
     })
   }
+
+  cancelFeedback() {
+    this.formFeedback.reset();
+    Swal.fire({
+      icon: 'success',
+      title: 'Your Feedback canceled Successfully!',
+    }).then(() => {
+      this.router.navigate(['/all-files']);
+    });
+  }
 }

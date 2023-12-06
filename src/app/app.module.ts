@@ -62,6 +62,8 @@ const routes: Routes = [
     component: CsvComponent,
     canActivate: [AuthenticationGuard, AuthorisationGuard],
   },
+
+ 
 ];
 
 export const routing = RouterModule.forRoot(routes);
@@ -81,6 +83,8 @@ export const routing = RouterModule.forRoot(routes);
     FeedbackComponent,
     CsvComponent,
     SpinnerComponent,
+    
+    
   ],
   imports: [
     BrowserModule,

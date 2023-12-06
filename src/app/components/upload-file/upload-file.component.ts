@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { FileService } from 'src/app/services/file.service';
 import Swal from 'sweetalert2';
 
@@ -14,10 +15,12 @@ export class UploadFileComponent implements OnInit {
   uploadProgress!: number;
   selectedDepartment!: string; // Add a property to store the selected department
   departements?: String[];
+  id!: number;
 
-  constructor(private fileUploadService: FileService,private router:Router) { }
+  constructor(private fileUploadService: FileService,private router:Router,private authService:AuthService) { }
   ngOnInit(): void {
     this.getAllDepartement();
+    this.getUserIdByEmail(this.authService.username);
   }
 
   onFileSelected(event: any): void {
@@ -29,7 +32,7 @@ export class UploadFileComponent implements OnInit {
 
   uploadFile(): void {
     if (this.selectedFile && this.selectedDepartment) {
-      this.fileUploadService.uploadFile(this.selectedFile, this.selectedDepartment)
+      this.fileUploadService.uploadFile(this.selectedFile, this.selectedDepartment, this.id)
         .subscribe(progress => {
           this.uploadProgress = progress;
           if (progress === 100) {
@@ -53,6 +56,16 @@ export class UploadFileComponent implements OnInit {
     this.fileUploadService.getAllDepartement().subscribe(
       (departements) => {
         this.departements = departements;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  getUserIdByEmail(email: string): void {
+    this.authService.getUserIdByEmail(email).subscribe(
+      (id) => {
+        this.id = id;
       },
       (error) => {
         console.error(error);

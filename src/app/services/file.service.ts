@@ -12,10 +12,11 @@ export class FileService {
   constructor(private http: HttpClient) { }
   
   
-  uploadFile(file: File, department: string): Observable<number> {
+  uploadFile(file: File, department: string,id:number): Observable<number> {
     const formData: FormData = new FormData();
     formData.append('file', file);
     formData.append('department', department);
+    formData.append('id', id.toString());
     
     return this.http.post(this.apiUrl + '/upload', formData, {
       reportProgress: true,

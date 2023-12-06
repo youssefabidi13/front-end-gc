@@ -67,3 +67,7 @@ h1 {
 .btn-primary:hover {
     background-color: #0056b3;
 }
+
+.button-container button {
+    margin-right: 10px; /* Adjust the value based on your preference */
+  }

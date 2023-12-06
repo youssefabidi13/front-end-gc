@@ -9,11 +9,12 @@
     <label for="departmentInput">Select Department:</label>
     <select id="departmentInput" [(ngModel)]="selectedDepartment">
       <option *ngFor="let d of departements" [value]="d">{{d}}</option>
-  
       <!-- Add more departments as needed -->
     </select>
-  
+    
   
     <button class="upload-button" (click)="uploadFile()">Upload</button>
+      <app-spinner></app-spinner>
+
   </div>
   

@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Mes Formations</h1>
+    <h1>Courses</h1>
 
     <button routerLink="/file" class="upload-button">Ajouter une Formation</button>
 
@@ -26,8 +26,11 @@
                         <a [routerLink]="'/formation/' + file.department">{{ file.department }}</a>
                     </td>
                     <td>
-                        <button class="btn btn-primary" (click)="downloadFile(file.id)">Download</button>
-                        <button class="btn btn-primary" [routerLink]="'/add-feedback/'+ file.id">Feedback</button>
+                        <div class="button-container">
+                            <button class="btn btn-primary" (click)="downloadFile(file.id)">Download</button>
+                            <button class="btn btn-primary" [routerLink]="'/add-feedback/'+ file.id">Feedback</button>
+                        </div>
+                      
                     </td>
                 </tr>
             </tbody>
