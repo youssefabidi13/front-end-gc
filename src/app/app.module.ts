@@ -22,6 +22,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { CsvComponent } from './components/csv/csv.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { FileDetailComponent } from './components/file-detail/file-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -62,6 +63,11 @@ const routes: Routes = [
     component: CsvComponent,
     canActivate: [AuthenticationGuard, AuthorisationGuard],
   },
+  {
+    path: 'file-detail/:fileId',
+    component: FileDetailComponent,
+    canActivate: [AuthenticationGuard, AuthorisationUserGuard],
+  },
 
  
 ];
@@ -83,6 +89,7 @@ export const routing = RouterModule.forRoot(routes);
     FeedbackComponent,
     CsvComponent,
     SpinnerComponent,
+    FileDetailComponent,
     
     
   ],

@@ -44,6 +44,10 @@ export class FileService {
       return this.http.get<File[]>(this.apiUrl + '/files/' + departementName);
     }
 
+    getFilesById(id: number): Observable<any> {
+      return this.http.get<any>(this.apiUrl + '/file-by-id/' + id);
+    }
+
 
   downloadFile(fileId: number): Observable<HttpResponse<Blob>> {
     return this.http.get(this.apiUrl + `/download/${fileId}`, {

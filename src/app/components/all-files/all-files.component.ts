@@ -31,6 +31,7 @@ export class AllFilesComponent implements OnInit {
             processing: true,
             lengthMenu: [5, 10, 25],
           });
+          
         }, 1);
         console.log(this.files);
       },

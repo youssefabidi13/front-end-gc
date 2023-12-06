@@ -16,7 +16,8 @@
             <tbody>
                 <tr *ngFor="let file of files">
                     <td>
-                        <h5>{{ file.filename }}</h5>
+                        <!-- <h5>{{ file.filename }}</h5> -->
+                        <a [routerLink]="'/file-detail/' + file.id">{{ file.filename }}</a>
                     </td>
                     <td>
                         <h5>{{ file.contentType }}</h5>
@@ -36,4 +37,6 @@
             </tbody>
         </table>
     </div>
+    
 </div>
+

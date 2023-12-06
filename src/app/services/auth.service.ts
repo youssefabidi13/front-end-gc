@@ -61,4 +61,8 @@ return this.http.post("http://localhost:8888/auth/login", params, options)
   getUserIdByEmail(email: string): Observable<any> {
     return this.http.get<any>(`http://localhost:8888/auth/userId/${email}`);
   }
+
+  getNomCompletById(id: number): Observable<any> {
+    return this.http.get<any>(`http://localhost:8888/auth/user/fullname/${id}`);
+  }
 }

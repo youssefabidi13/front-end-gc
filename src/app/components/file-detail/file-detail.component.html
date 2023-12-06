@@ -1,0 +1,30 @@
+<div class="container">
+    <h2> This file provided by <span style="font-style:italic;">{{file.fullName}}</span> </h2>
+    <p class="description">This page displays all feedback received for the selected file <span style="font-weight: bold;font-style: italic;">{{file.filename}}</span></p>
+
+    <!-- Clients Review Section -->
+    <div class="reviewSection">
+
+    <!-- Clients Review-1 Section Starts from Here  -->
+        <div class="reviewItem" *ngFor="let f of file.feedbacks">
+            <div class="top">
+                <div class="clientImage">
+                    <span>{{f.name}}</span>
+                </div>
+                <ul>
+                    <li><i class="fa-solid fa-star"></i></li>
+                    <li><i class="fa-solid fa-star"></i></li>
+                    <li><i class="fa-solid fa-star"></i></li>
+                    <li><i class="fa-regular fa-star"></i></li>
+                    <li><i class="fa-regular fa-star"></i></li>
+                </ul>
+            </div>
+            <article>
+                <p class="review">{{f.message_feedback}}</p>
+                <p>{{f.dateFeedback | date: 'MMM dd, yyyy'}}</p>
+            </article>
+        </div>
+
+
+    </div>
+</div>
