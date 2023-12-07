@@ -1,0 +1,59 @@
+<!-- <div class="resignation-form">
+  <h2>Resignation Request Form</h2>
+  <form (submit)="submitResignation()">
+    <label for="departureDate">Departure Date:</label>
+    <input
+      type="date"
+      id="departureDate"
+      name="departureDate"
+      [(ngModel)]="resignationRequest.departureDate"
+      required
+    />
+
+    <label for="reason">Reason for Resignation:</label>
+    <textarea
+      id="reason"
+      name="reason"
+      [(ngModel)]="resignationRequest.reason"
+      required
+    ></textarea>
+
+    <button type="submit">Submit Resignation</button>
+  </form>
+</div> -->
+
+<main class="cd__main">
+  <div class="wrapper">
+    <div class="title">Resignation Request Form</div>
+    <div class="content">
+      We understand that contemplating a decision
+      like this is significant, and we encourage you to take a moment to reflect
+      on your journey with us..
+    </div>
+    <div class="rate-box">
+      <form (submit)="submitResignation()">
+        
+        <label for="departureDate">Departure Date:</label><br>
+        <input
+          type="date"
+          id="departureDate"
+          name="departureDate"
+          [(ngModel)]="resignationRequest.departureDate"
+          required
+        />
+        
+        <textarea
+          id="reason"
+          name="reason"
+          [(ngModel)]="resignationRequest.reason"
+          cols="30"
+          rows="6"
+          placeholder="Reason for Resignation"
+          required
+        ></textarea>
+        
+        <button class="submit-btn" type="submit">Submit Resignation</button>
+      </form>
+    </div>
+  </div>
+</main>

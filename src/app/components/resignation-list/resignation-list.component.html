@@ -1,0 +1,70 @@
+
+
+<div class="container">
+
+    <h1 class="resignation-heading">List Resignations</h1>
+    <!-- <table>
+      <tr>
+        <th>User</th>
+  
+        <th>Reason</th>
+  
+        <th>Departure Date</th>
+  
+        <th>Request Date</th>
+  
+        <th>Actions</th>
+  
+      </tr>
+  
+      <tr  *ngFor="let resignation of resignations" >
+        <td>{{ resignation.nomUtilisateur }}</td>
+          <td>{{ resignation.reason }}</td>
+          <td>{{ resignation.departureDate }}</td>
+          <td>{{ resignation.requestDate }} </td>
+          <td class="btns">
+          <button class="approve" (click)="approveResignation(resignation.resignationId)">Approve</button>
+          <span class="button-space"></span>
+          <button class="reject" (click)="rejectResignation(resignation.resignationId)">Reject</button>
+  
+          </td>
+      </tr>
+    </table> -->
+
+    <!-- Check if resignations is not null and is not empty -->
+<div *ngIf="resignations && resignations.length > 0">
+    <table>
+        <tr>
+            <th>User</th>
+      
+            <th>Reason</th>
+      
+            <th>Departure Date</th>
+      
+            <th>Request Date</th>
+      
+            <th>Actions</th>
+      
+          </tr>
+      
+      <tr *ngFor="let resignation of resignations">
+        <td>{{ resignation.nomUtilisateur }}</td>
+        <td>{{ resignation.reason }}</td>
+        <td>{{ resignation.departureDate }}</td>
+        <td>{{ resignation.requestDate }} </td>
+        <td class="btns">
+          <button class="approve" (click)="approveResignation(resignation.resignationId)">Approve</button>
+          <span class="button-space"></span>
+          <button class="reject" (click)="rejectResignation(resignation.resignationId)">Reject</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!-- Display a message if resignations is null or empty -->
+  <div *ngIf="!resignations || resignations.length === 0" class="no-resignations">
+    <p>No resignations to display.</p>
+</div>
+
+  
+  </div>
+  

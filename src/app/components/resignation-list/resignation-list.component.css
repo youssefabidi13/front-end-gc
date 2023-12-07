@@ -1,0 +1,91 @@
+.container {
+    margin:40px auto;
+  }
+  .resignation-heading {
+    text-align: center;
+    font-size: 28px; 
+    margin-bottom: 20px; 
+  }
+  table{
+    width: 90%; 
+    margin: auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-shadow: 0 2px 15px rgba(64,64,64,.7);
+    border-radius: 12px 12px 0 0;
+  
+   }
+   td , th{
+    padding: 15px 20px;
+    text-align: center;
+  
+    
+   }
+   th{
+    background-color: #3543d6;
+    color: #fafafa;
+    font-family: 'Open Sans',Sans-serif;
+    font-weight: 200;
+    text-transform: uppercase;
+   
+   }
+   tr{
+    width: 100%;
+    background-color: #fafafa;
+    font-family: 'Montserrat', sans-serif;
+   }
+   tr:nth-child(even){
+    background-color: #eeeeee;
+   }
+  button{
+    width: 120px;
+  }
+  
+   .approve{
+    display: inline-block;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    border-radius: 10px;
+    background-color: rgb(72, 210, 164);
+    color:#fff;
+    text-decoration: none;
+    border: none;
+   }
+   .reject{
+    display: inline-block;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    border-radius: 10px;
+    background-color: rgb(210, 72, 72);
+    color:#fff;
+    text-decoration: none;
+    border: none;
+   }
+  
+   .button-space {
+    margin-left: 10px; /* Adjust the value according to your preference */
+  }
+
+  .no-resignations {
+    padding: 20px;
+    background-color: #f8d7da; /* Light red background color, you can change it to your preference */
+    color: #721c24; /* Dark red text color, you can change it to your preference */
+    border: 1px solid #f5c6cb; /* Border color, you can change it to your preference */
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .no-resignations p {
+    margin: 0;
+  }
+  

@@ -15,6 +15,11 @@
           <li class="nav-item">
             <a class="nav-link" *ngIf="authService.isAuthenticated && authService.roles.includes('USER')" routerLink="/all-files" routerLinkActive="active">All files</a>
           </li>  
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="authService.isAuthenticated && authService.roles.includes('USER')" routerLink="/resignation" routerLinkActive="active">Resignation Request</a>
+          </li>  
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="authService.isAuthenticated && authService.roles.includes('ADMIN')" routerLink="/resignation-list" routerLinkActive="active">Resignation List</a>
           <!-- Account -->
           <li class="nav-item">
             <a class="nav-link"*ngIf="authService.isAuthenticated && authService.roles.includes('ADMIN')" routerLink="/upload-csv" routerLinkActive="active">Upload CSV</a>

@@ -23,6 +23,8 @@ import { CsvComponent } from './components/csv/csv.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { FileDetailComponent } from './components/file-detail/file-detail.component';
+import { ResignationComponent } from './components/resignation/resignation.component';
+import { ResignationListComponent } from './components/resignation-list/resignation-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -69,6 +71,16 @@ const routes: Routes = [
     canActivate: [AuthenticationGuard, AuthorisationUserGuard],
   },
 
+  {
+    path: 'resignation',
+    component: ResignationComponent,
+    canActivate: [AuthenticationGuard, AuthorisationUserGuard],
+  },
+  {
+    path: 'resignation-list',
+    component: ResignationListComponent,
+    canActivate: [AuthenticationGuard, AuthorisationGuard],
+  },
  
 ];
 
@@ -90,6 +102,8 @@ export const routing = RouterModule.forRoot(routes);
     CsvComponent,
     SpinnerComponent,
     FileDetailComponent,
+    ResignationComponent,
+    ResignationListComponent,
     
     
   ],
