@@ -30,6 +30,7 @@ import { DepartmentUpdateComponent } from './components/department-update/depart
 import { DepartmentCreateComponent } from './components/department-create/department-create.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
+import { UserCreateComponent } from './components/user-create/user-create.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -111,7 +112,11 @@ const routes: Routes = [
     component: UserUpdateComponent,
     canActivate: [AuthenticationGuard, AuthorisationGuard],
   },
-  
+  {
+    path: 'ajouter-user',
+    component: UserCreateComponent,
+    canActivate: [AuthenticationGuard, AuthorisationGuard],
+  }
  
 ];
 
@@ -140,6 +145,7 @@ export const routing = RouterModule.forRoot(routes);
     DepartmentCreateComponent,
     UserListComponent,
     UserUpdateComponent,
+    UserCreateComponent,
     
     
   ],

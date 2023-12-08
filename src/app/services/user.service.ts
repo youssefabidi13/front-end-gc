@@ -36,8 +36,8 @@ export class UserService {
     return this.http.get<UserDto>(`${this.apiUrl3}/${id}`);
   }
 
-  createUser(newUser: { nom: string; prenom: string; email: string; age: number; mot_de_passe: string; role: string; department_id: number }): Observable<any> {
-    return this.http.post(`${this.apiUrl2}/newUser`, newUser, { responseType: 'text' });
+  createUser(newUser: { nomComplet: string;  email: string;  role :string;password: string; department_id: number },id:number): Observable<any> {
+    return this.http.post(`${this.apiUrl2}/newUser/${id}`, newUser, { responseType: 'text' });
   }
   
   updateUser(id: number, updatedUser: UserDto1, depId: number): Observable<any> {

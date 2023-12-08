@@ -34,7 +34,7 @@ next:data => {
   if (this.authService.roles.includes("ADMIN")) {
     this.router.navigateByUrl("/dashboard");
   } else if (this.authService.roles.includes("USER")) {
-    this.router.navigateByUrl("/home");
+    this.router.navigateByUrl("/all-files");
   } else {
     // Handle other roles or scenarios
     console.log("Invalid role or scenario");

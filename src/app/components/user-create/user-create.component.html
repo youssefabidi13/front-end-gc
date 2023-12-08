@@ -1,0 +1,31 @@
+<body>
+  
+    <!-- add-user.component.html -->
+  
+    <div class="main2">
+      <h2>New User</h2>
+      <form (ngSubmit)="createUser()" >
+        
+          <label for="fullName">Full name</label>
+          <input type="text" id="nom" name="fullName" [(ngModel)]="user.nomComplet" required>
+    
+       
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" [(ngModel)]="user.email" required>
+     
+          <label for="password">Mot de Passe</label>
+          <input type="password" id="mot_de_passe" name="password" [(ngModel)]="user.password" required>
+       
+          <label for="department_id">Department</label>
+          <select id="department_id" name="department_id" [(ngModel)]="user.department_id" required>
+            <option *ngFor="let department of departments" [value]="department.idDepartement">
+              {{ department.nomDepartement }}
+            </option>
+          </select>
+        
+  
+        <button type="button" (click)="createUser()">Create</button>
+      </form>
+    </div>
+  
+  </body>
