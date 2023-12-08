@@ -25,6 +25,11 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { FileDetailComponent } from './components/file-detail/file-detail.component';
 import { ResignationComponent } from './components/resignation/resignation.component';
 import { ResignationListComponent } from './components/resignation-list/resignation-list.component';
+import { ListDepartmentsComponent } from './components/list-departments/list-departments.component';
+import { DepartmentUpdateComponent } from './components/department-update/department-update.component';
+import { DepartmentCreateComponent } from './components/department-create/department-create.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserUpdateComponent } from './components/user-update/user-update.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -81,6 +86,32 @@ const routes: Routes = [
     component: ResignationListComponent,
     canActivate: [AuthenticationGuard, AuthorisationGuard],
   },
+  {
+    path: 'list-departments',
+    component: ListDepartmentsComponent,
+    canActivate: [AuthenticationGuard, AuthorisationGuard],
+  },
+  {
+    path: 'modifier-departement/:id',
+    component: DepartmentUpdateComponent,
+    canActivate: [AuthenticationGuard, AuthorisationGuard],
+  },
+  {
+    path: 'ajouter-departement',
+    component: DepartmentCreateComponent,
+    canActivate: [AuthenticationGuard, AuthorisationGuard],
+  },
+  {
+    path: 'list-users',
+    component: UserListComponent,
+    canActivate: [AuthenticationGuard, AuthorisationGuard],
+  },
+  {
+    path: 'modifier-user/:id',
+    component: UserUpdateComponent,
+    canActivate: [AuthenticationGuard, AuthorisationGuard],
+  },
+  
  
 ];
 
@@ -104,6 +135,11 @@ export const routing = RouterModule.forRoot(routes);
     FileDetailComponent,
     ResignationComponent,
     ResignationListComponent,
+    ListDepartmentsComponent,
+    DepartmentUpdateComponent,
+    DepartmentCreateComponent,
+    UserListComponent,
+    UserUpdateComponent,
     
     
   ],

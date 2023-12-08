@@ -6,7 +6,7 @@ export class Department {
   descriptionDepartement: string;
   responsableDepartement: UserFisca;
   membresDepartement: UserFisca[];
-
+  
   constructor(
     idDepartement: number,
     nomDepartement: string,

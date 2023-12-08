@@ -1,0 +1,52 @@
+/* department-create.component.css */
+
+
+div {
+    padding-top: 130px;
+      max-width: 400px;
+      margin: 0 auto;
+      margin-top:100px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: rgb(189, 137, 195);
+  
+    }
+    
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    label {
+      margin-bottom: 8px;
+    }
+    
+    input,
+    textarea {
+      padding: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    
+    button {
+      background-color: #000;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #fff;
+      color:#000
+    }
+    

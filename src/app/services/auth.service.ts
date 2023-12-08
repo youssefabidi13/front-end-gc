@@ -66,3 +66,16 @@ return this.http.post("http://localhost:8888/auth/login", params, options)
     return this.http.get<any>(`http://localhost:8888/auth/user/fullname/${id}`);
   }
 }
+
+export interface DepartmentDto {
+  idDepartement: number;
+  nomDepartement: string;
+  descriptionDepartement: string;
+}
+export class DepartmentDtoImpl implements DepartmentDto {
+  idDepartement: number = 0;
+  nomDepartement: string = '';
+  descriptionDepartement: string = '';
+
+  
+}

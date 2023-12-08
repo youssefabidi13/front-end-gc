@@ -1,0 +1,50 @@
+
+<body>
+    <!-- list-departments.component.html -->
+  
+  <router-outlet ></router-outlet>
+  <div *ngIf="!showUpdateForm">
+    <main class="table">
+        <section class="table__header">
+          <h1>Liste des utilisateurs</h1>
+             <a routerLink="/ajouter-user" class="btn btn-primary">Créer un user</a>
+        </section>
+        <section class="table__body">
+          <table>
+              
+            <thead>
+              <tr>
+                <th> Id </th>
+                <th> Full Name  </th>
+                <!-- <th> Prenom </th> -->
+                <!-- <th> Age </th> -->
+                <th> Email </th>
+             
+                <th>Nom departement</th>
+                <th> Actions </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td><strong>{{ user.idUtilisateur }}</strong></td>
+                <td>{{ user.nomComplet }}</td>
+                <!-- <td>{{ user.prenom }}</td> -->
+                <!-- <td>{{ user.age }}</td> -->
+                <td>{{ user.email }}</td>
+           
+                
+                <td>{{ user.departementName}}</td>
+                <td>
+                  <button class="btn btn-primary" style="margin-right:10px" (click)="updateUser(user.idUtilisateur)">Modifier</button>
+  
+                  <button class="btn btn-danger" (click)="confirmDelete(user.idUtilisateur)">Supprimer</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+    </main>
+  </div>
+  
+  
+  </body>

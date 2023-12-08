@@ -1,0 +1,19 @@
+<body>
+  
+    <!-- department-create.component.html -->
+    <div>
+      <h2>New Department</h2>
+      <form (ngSubmit)="createDepartment()">
+       
+    
+        <label for="nomDepartement">Nom</label>
+        <input id="nomDepartement" [(ngModel)]="department.nomDepartement" name="nomDepartement" required>
+    
+        <label for="descriptionDepartement">Description</label>
+        <textarea id="descriptionDepartement" [(ngModel)]="department.descriptionDepartement" name="descriptionDepartement" required></textarea>
+    
+        <button type="button" (click)="createDepartment()">Create</button>
+      </form>
+    </div>
+    
+    </body>

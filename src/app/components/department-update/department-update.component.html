@@ -1,0 +1,15 @@
+<!-- department-update.component.html -->
+
+<div>
+    <h2>Update Department</h2>
+    <form (ngSubmit)="updateDepartment()">
+     
+      <label for="nomDepartement">Nom</label>
+      <input id="nomDepartement" [(ngModel)]="department.nomDepartement" name="nomDepartement" required>
+  
+      <label for="descriptionDepartement">Description</label>
+      <textarea id="descriptionDepartement" [(ngModel)]="department.descriptionDepartement" name="descriptionDepartement" required></textarea>
+  
+      <button type="submit">Update</button>
+    </form>
+</div>

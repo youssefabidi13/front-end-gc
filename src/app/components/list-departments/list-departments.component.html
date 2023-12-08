@@ -1,0 +1,40 @@
+
+<body>
+    <!-- list-departments.component.html -->
+
+  
+    <div *ngIf="!showUpdateForm" class="mil">
+      <main class="table" style="margin-left: 110px;align-items:center;">
+          <section class="table__header">
+            <h1>Liste des départements</h1>
+               <a routerLink="/ajouter-departement" class="btn btn-primary">Créer un département</a>
+          </section>
+          <section class="table__body">
+            <table>
+              <thead>
+                <tr>
+                  <th> Id </th>
+                  <th> Nom du département </th>
+                  <th> Description </th>
+                  <th> Actions </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let department of departments">
+                  <td><strong>{{ department.idDepartement }}</strong></td>
+                  <td>{{ department.nomDepartement }}</td>
+                  <td>{{ department.descriptionDepartement }}</td>
+                  <td>
+                    <button class="btn btn-primary" style="margin-right:10px" (click)="updateDepartment(department.idDepartement)">Modifier</button>
+  
+                    <button class="btn btn-danger" (click)="confirmDelete(department.idDepartement)">Supprimer</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+      </main>
+    </div>
+  
+  
+  </body>

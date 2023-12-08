@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Department } from 'src/app/entities/department';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService, DepartmentDto } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class RegisterComponent implements OnInit {
   formRegister!: FormGroup;
-  departments: Department[] = []; // Assuming you have a service to fetch departments
+  departments: DepartmentDto[] = []; // Assuming you have a service to fetch departments
   constructor(private formBuilder: FormBuilder,private authService:AuthService,private router:Router) { }
 
   ngOnInit(): void {
@@ -78,6 +78,7 @@ export class RegisterComponent implements OnInit {
       this.authService.getDepartments().subscribe(
         (data: Department[]) => {
           this.departments = data;
+          console.log(data+"data");
         },
         (error: any) => {
           console.log(error);
@@ -85,4 +86,7 @@ export class RegisterComponent implements OnInit {
       );
     }
 
+  
+
 }
+
