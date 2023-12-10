@@ -95,7 +95,7 @@ export class HomeAdminTestComponent implements OnInit {
       data: {
         labels: this.feedbackRatesPercentage.map(entry => entry.label),
         datasets: [{
-          label: 'Percentage of Students',
+          label: 'Percentage of employees by feedback rate',
           data: this.feedbackRatesPercentage.map(entry => parseFloat(entry.data)),
           borderWidth: 1
         }]

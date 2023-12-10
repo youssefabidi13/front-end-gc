@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white w-100 navigation" id="navbar">
+<div *ngIf="showHeader">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white w-100 navigation" id="navbar" >
     <div class="container">
       <a class="navbar-brand font-weight-bold" routerLink="/">DigiTalent</a>
   
@@ -51,3 +52,4 @@
         </div>
     </div>
   </nav>
+</div>

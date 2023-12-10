@@ -37,7 +37,7 @@ export class ResignationComponent implements OnInit {
             icon: 'success',
             title: 'Démission soumise avec succès!',
           });
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/all-files');
 
         },
         (error) => {

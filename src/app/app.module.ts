@@ -31,9 +31,11 @@ import { DepartmentCreateComponent } from './components/department-create/depart
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserUpdateComponent } from './components/user-update/user-update.component';
 import { UserCreateComponent } from './components/user-create/user-create.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home-test', pathMatch: 'full' },
+  { path: 'home-test', component: HomeTestComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {
@@ -116,7 +118,12 @@ const routes: Routes = [
     path: 'ajouter-user',
     component: UserCreateComponent,
     canActivate: [AuthenticationGuard, AuthorisationGuard],
-  }
+  },
+  {
+    path: 'contact-us',
+    component: ContactUsComponent,
+  },
+
  
 ];
 
@@ -146,6 +153,7 @@ export const routing = RouterModule.forRoot(routes);
     UserListComponent,
     UserUpdateComponent,
     UserCreateComponent,
+    ContactUsComponent,
     
     
   ],
